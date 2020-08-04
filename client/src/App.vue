@@ -37,24 +37,60 @@
       </v-btn>
     </v-app-bar>
 
-    <v-main>
-      <HelloWorld/>
+    <v-main class="small">
+      <ListChart
+        :chart-data="datacollection"
+      />
+      <button @click="fillData()">Randomize</button>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+//  import HelloWorld from './components/HelloWorld'
+import ListChart from './components/ListChart'
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld
+    // HelloWorld,
+    ListChart
   },
 
   data: () => ({
-    //
-  })
+    datacollection: null
+  }),
+  mouted () {
+    this.fillData()
+  },
+  methods: {
+    fillData () {
+      this.datacollection = {
+        labels: [this.getRandomInt(), this.getRandomInt()],
+        datasets: [
+          {
+            label: 'Data One',
+            backgroundColor: '#f87979',
+            data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
+          }, {
+            label: 'Data Two',
+            backgroundColor: 'rgb(54, 162, 235)',
+            data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
+          }
+        ]
+      }
+    },
+    getRandomInt () {
+      return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+    }
+  }
 }
 </script>
+
+<style scoped>
+  .small {
+    max-width: 600px;
+    margin:  150px auto;
+  }
+</style>
