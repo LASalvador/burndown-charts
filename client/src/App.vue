@@ -38,10 +38,23 @@
     </v-app-bar>
 
     <v-main class="small">
-      <ListChart
-        :chart-data="datacollection"
-      />
-      <button @click="fillData()">Randomize</button>
+      <v-row>
+        <v-col
+          cols="12"
+          xs="12"
+          sm="12"
+        >
+           <ListChart
+              :chart-data="datacollection"
+              :height="130"
+            />
+        </v-col>
+        <v-col
+          cols="12"
+        >
+          <button @click="fillData()">Randomize</button>
+        </v-col>
+      </v-row>
     </v-main>
   </v-app>
 </template>
@@ -67,16 +80,58 @@ export default {
   methods: {
     fillData () {
       this.datacollection = {
-        labels: [this.getRandomInt(), this.getRandomInt()],
+        labels: [this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt()
+        ],
         datasets: [
           {
-            label: 'Data One',
+            label: 'Horas Planejadas',
             backgroundColor: '#f87979',
-            data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
+            data: [this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt()
+            ]
           }, {
-            label: 'Data Two',
+            label: 'Horas Reais',
             backgroundColor: 'rgb(54, 162, 235)',
-            data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
+            data: [this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt()
+            ]
           }
         ]
       }
@@ -89,8 +144,4 @@ export default {
 </script>
 
 <style scoped>
-  .small {
-    max-width: 600px;
-    margin:  150px auto;
-  }
 </style>
