@@ -44,7 +44,7 @@
           xs="12"
           sm="12"
         >
-          <Table
+          <AmountTable
             :items="desserts"
             :headers="headers"
           />
@@ -71,175 +71,118 @@
 
 <script>
 import ListChart from './components/ListChart/ListChart'
-import Table from './components/Table/Table'
+import AmountTable from './components/AmountTable/AmountTable'
 
 export default {
   name: 'App',
 
   components: {
     ListChart,
-    Table
+    AmountTable
   },
 
   data: () => ({
     datacollection: null,
     headers: [
       {
-        text: 'Dessert (100g serving)',
+        text: 'Dias',
         align: 'start',
-        value: 'name'
+        value: 'day'
       },
       {
-        text: 'Calories',
-        value: 'calories',
+        text: 'Planejados',
+        value: 'plan',
         sortable: false
       },
-      { text: 'Fat (g)', value: 'fat', sortable: false },
-      { text: 'Carbs (g)', value: 'carbs', sortable: false },
-      { text: 'Protein (g)', value: 'protein', sortable: false },
-      { text: 'Iron (%)', value: 'iron', sortable: false }
+      {
+        text: 'Reais',
+        value: 'actual',
+        sortable: false
+      }
     ],
     desserts: [
       {
-        name: 'Frozen Yogurt',
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
-        protein: 4.0,
-        iron: '1%'
+        day: 'Dia 1',
+        plan: 10,
+        actual: 10
       },
       {
-        name: 'Ice cream sandwich',
-        calories: 237,
-        fat: 9.0,
-        carbs: 37,
-        protein: 4.3,
-        iron: '1%'
+        day: 'Dia 2',
+        plan: 9,
+        actual: 8
       },
       {
-        name: 'Eclair',
-        calories: 262,
-        fat: 16.0,
-        carbs: 23,
-        protein: 6.0,
-        iron: '7%'
+        day: 'Dia 3',
+        plan: 8,
+        actual: 8
       },
       {
-        name: 'Cupcake',
-        calories: 305,
-        fat: 3.7,
-        carbs: 67,
-        protein: 4.3,
-        iron: '8%'
+        day: 'Dia 4',
+        plan: 7,
+        actual: 8
       },
       {
-        name: 'Gingerbread',
-        calories: 356,
-        fat: 16.0,
-        carbs: 49,
-        protein: 3.9,
-        iron: '16%'
+        day: 'Dia 5',
+        plan: 6,
+        actual: 6
       },
       {
-        name: 'Jelly bean',
-        calories: 375,
-        fat: 0.0,
-        carbs: 94,
-        protein: 0.0,
-        iron: '0%'
+        day: 'Dia 6',
+        plan: 5,
+        actual: 5
       },
       {
-        name: 'Lollipop',
-        calories: 392,
-        fat: 0.2,
-        carbs: 98,
-        protein: 0,
-        iron: '2%'
+        day: 'Dia 7',
+        plan: 4,
+        actual: 5
       },
       {
-        name: 'Honeycomb',
-        calories: 408,
-        fat: 3.2,
-        carbs: 87,
-        protein: 6.5,
-        iron: '45%'
+        day: 'Dia 8',
+        plan: 3,
+        actual: 3
       },
       {
-        name: 'Donut',
-        calories: 452,
-        fat: 25.0,
-        carbs: 51,
-        protein: 4.9,
-        iron: '22%'
+        day: 'Dia 9',
+        plan: 2,
+        actual: 2
       },
       {
-        name: 'KitKat',
-        calories: 518,
-        fat: 26.0,
-        carbs: 65,
-        protein: 7,
-        iron: '6%'
+        day: 'Dia 10',
+        plan: 1,
+        actual: 1
       }
     ]
   }),
-  mouted () {
-    this.fillData()
+  computed: {
+    array_plan: function () {
+      return this.desserts.map((item) => {
+        return item.plan
+      })
+    },
+    array_actual: function () {
+      return this.desserts.map((item) => {
+        return item.actual
+      })
+    },
+    array_label: function () {
+      return this.desserts.map((item) => {
+        return item.day
+      })
+    }
   },
   methods: {
     fillData () {
       this.datacollection = {
-        labels: [this.getRandomInt(),
-          this.getRandomInt(),
-          this.getRandomInt(),
-          this.getRandomInt(),
-          this.getRandomInt(),
-          this.getRandomInt(),
-          this.getRandomInt(),
-          this.getRandomInt(),
-          this.getRandomInt(),
-          this.getRandomInt(),
-          this.getRandomInt(),
-          this.getRandomInt(),
-          this.getRandomInt(),
-          this.getRandomInt()
-        ],
+        labels: this.array_label,
         datasets: [
           {
             label: 'Horas Planejadas',
             backgroundColor: '#f87979',
-            data: [this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt()
-            ]
+            data: this.array_plan
           }, {
             label: 'Horas Reais',
             backgroundColor: 'rgb(54, 162, 235)',
-            data: [this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt(),
-              this.getRandomInt()
-            ]
+            data: this.array_actual
           }
         ]
       }
