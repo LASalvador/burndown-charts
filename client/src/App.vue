@@ -5,66 +5,53 @@
       color="primary"
       dark
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+      <div class="d-flex align-center text-h5 font-weight-bold">
+        Burndown Charts
       </div>
 
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-main class="small">
-      <v-row>
-        <v-col
-          cols="12"
-          xs="12"
-          sm="12"
+      <v-container fluid>
+        <v-row
+          align="center"
+          justify="center"
         >
-          <AmountTable
-            :items="desserts"
-            :headers="headers"
-          />
-        </v-col>
-        <v-col
-          cols="12"
-          xs="12"
-          sm="12"
-        >
-           <ListChart
-              :chart-data="datacollection"
-              :height="130"
+          <v-col
+            cols="12"
+            xs="12"
+            sm="12"
+          >
+            <AmountTable
+              :items="desserts"
+              :headers="headers"
             />
-        </v-col>
-        <v-col
-          cols="12"
-        >
-          <button @click="fillData()">Randomize</button>
-        </v-col>
-      </v-row>
+          </v-col>
+          <v-col
+            cols="12"
+            justify="center"
+          >
+            <v-btn
+              medium
+              color="primary"
+              @click="fillData()"
+            >
+              Gerar Gráfico
+            </v-btn>
+          </v-col>
+          <v-col
+            cols="12"
+            xs="12"
+            sm="12"
+          >
+            <ListChart
+                :chart-data="datacollection"
+                :height="130"
+              />
+          </v-col>
+        </v-row>
+      </v-container>
     </v-main>
   </v-app>
 </template>
